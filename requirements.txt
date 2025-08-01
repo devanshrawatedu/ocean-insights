@@ -2,3 +2,4 @@ streamlit
 geopy
 copernicusmarine
 google-generativeai
+numpy
