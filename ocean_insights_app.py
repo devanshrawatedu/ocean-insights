@@ -5,6 +5,7 @@ import copernicusmarine
 import logging
 import google.generativeai as genai
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import numpy as np
 
 # Set credentials for Copernicus Marine from Streamlit secrets
 logging.getLogger("copernicusmarine").setLevel(logging.ERROR)
@@ -36,7 +37,7 @@ def get_coordinates(location_str):
 def make_bbox(lat, lon, delta=0.45):
     return {
         "min_lat": lat - delta,
-        "max_lat": lon + delta,
+        "max_lat": lat + delta,
         "min_lon": lon - delta,
         "max_lon": lon + delta
     }
@@ -46,6 +47,12 @@ def ask_gemini(prompt):
     model = genai.GenerativeModel("gemini-2.5-flash")
     response = model.generate_content(prompt)
     return response.text.strip()
+
+def is_empty_dataset(ds, var_list):
+    try:
+        return all(np.isnan(ds[v].mean().values.item()) for v in var_list)
+    except Exception:
+        return True
 
 # UI state
 if "location" not in st.session_state:
@@ -150,6 +157,20 @@ if analyze:
         ds_wav = results["ds_wav"]
         ds_wav_dy = results["ds_wav_dy"]
         ds_bgc = results["ds_bgc"]
+
+        # Stop early if no data or all datasets are empty
+        if all(ds is None for ds in results.values()):
+            st.error("🚫 No marine data found near this location. Try a more coastal area.")
+            st.stop()
+
+        if all([
+            is_empty_dataset(ds_phy, ["thetao", "so", "zos", "uo", "vo"]),
+            is_empty_dataset(ds_wav, ["VHM0", "VTM10", "VMDR"]),
+            is_empty_dataset(ds_wav_dy, ["SWH", "MWD", "MWP"]),
+            is_empty_dataset(ds_bgc, ["CHL", "O2", "NO3"])
+        ]):
+            st.error("🚫 Marine data is unavailable or invalid for this region. Please choose a better-known coastal location.")
+            st.stop()
 
         wave_data = "- ⚠️ Wave data not available.\n"
         if ds_wav:
