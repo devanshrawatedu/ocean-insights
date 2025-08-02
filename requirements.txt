@@ -1,5 +1,7 @@
-streamlit
-geopy
-copernicusmarine
-google-generativeai
-numpy
+streamlit>=1.20
+geopy>=2.3
+copernicusmarine>=0.5
+google-generativeai>=0.1.6
+numpy>=1.21
+xarray>=2022.9
+markdown>=3.3
