@@ -26,7 +26,7 @@
 ## 📸 UI Preview
 
 
-![Ocean Insights App Screenshot]()
+![Ocean Insights App Screenshot](app_screenshot.png)
 
 
 ## 📦 Datasets Used
