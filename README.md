@@ -42,12 +42,7 @@
 ## 🌍 SDG Alignment
 
 
-Ocean Insights supports these **UN Sustainable Development Goals (SDGs)**:
-
-
-- **SDG 13: Climate Action** — Raising awareness about changing ocean conditions through accessible AI-driven insights.
-- **SDG 14: Life Below Water** — Making biogeochemical data (chlorophyll, oxygen, nutrients) understandable to promote ocean literacy.
-- **SDG 11: Sustainable Cities and Communities** — Informing safe coastal activities and promoting resilience in coastal communities.
+Ocean Insights supports **SDG 14: Life Below Water** — Making biogeochemical data (chlorophyll, oxygen, nutrients) understandable to promote ocean literacy.
 
 
 ## 🛠️ Installation & Local Run

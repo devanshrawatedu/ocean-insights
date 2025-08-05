@@ -197,10 +197,7 @@ The app combines:
 
 
 
-This tool contributes to:
-- **SDG 13: Climate Action**, by raising awareness through ocean data transparency.
-- **SDG 14: Life Below Water**, by improving accessibility to marine health metrics like oxygen, currents, and chlorophyll.
-- **SDG 11: Sustainable Cities and Communities**, by supporting safe, informed decisions in vulnerable coastal regions.
+This tool contributes to **SDG 14: Life Below Water**, by improving accessibility to marine health metrics like oxygen, currents, and chlorophyll.
 """
 )
 with st.expander("💡 Example questions you can ask"):
